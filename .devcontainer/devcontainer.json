@@ -13,7 +13,10 @@
 			"extensions": [
 				"ms-dotnettools.csdevkit",
 				"kreativ-software.csharpextensions",
-				"josefpihrt-vscode.roslynator"
+				"josefpihrt-vscode.roslynator",
+				"GitHub.copilot",
+				"GitHub.vscode-pull-request-github",
+				"github.vscode-github-actions"
 			]
 		}
 	}
