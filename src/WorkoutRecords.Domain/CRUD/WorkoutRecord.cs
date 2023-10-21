@@ -1,6 +1,6 @@
 namespace WorkoutRecords.Domain.CRUD;
 
-public class Record
+public class WorkoutRecord
 {
     public Workout Workout { get; set; } = new();
 
