@@ -9,3 +9,11 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
+    groups:
+      # Update all dependencies with "patch" or "minor" updates
+      non-breaking-change-deps:
+        patterns:
+          - '*'
+        update-types:
+          - 'minor'
+          - 'patch'
