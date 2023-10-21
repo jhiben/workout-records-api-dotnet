@@ -16,7 +16,9 @@
 				"josefpihrt-vscode.roslynator",
 				"GitHub.copilot",
 				"GitHub.vscode-pull-request-github",
-				"github.vscode-github-actions"
+				"github.vscode-github-actions",
+				"streetsidesoftware.code-spell-checker",
+				"csharpier.csharpier-vscode"
 			]
 		}
 	}
