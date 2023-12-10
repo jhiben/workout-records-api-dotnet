@@ -1,10 +1,15 @@
 ﻿using StronglyTypedIds;
+using WorkoutRecords.Domain.DDD.SeedWork;
 
 namespace WorkoutRecords.Domain.DDD;
 
-public class Workout
+public class Workout : Entity<WorkoutId>
 {
-    public WorkoutId Id { get; } = WorkoutId.New();
+    private Workout()
+        : this(WorkoutId.New()) { }
+
+    private Workout(WorkoutId id)
+        : base(id) { }
 }
 
 [StronglyTypedId(converters: StronglyTypedIdConverter.None)]

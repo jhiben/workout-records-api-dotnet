@@ -1,20 +1,22 @@
 ﻿using StronglyTypedIds;
 using WorkoutRecords.Domain.DDD.Exceptions;
+using WorkoutRecords.Domain.DDD.SeedWork;
 
 namespace WorkoutRecords.Domain.DDD;
 
-public abstract class RecordHistory<T>
+public abstract class RecordHistory<T> : Entity<RecordHistoryId>
     where T : Record
 {
     private readonly List<T> _records = [];
 
     protected RecordHistory(WorkoutId workoutId)
+        : this(RecordHistoryId.New(), workoutId) { }
+
+    private RecordHistory(RecordHistoryId id, WorkoutId workoutId)
+        : base(id)
     {
-        Id = RecordHistoryId.New();
         WorkoutId = workoutId;
     }
-
-    public RecordHistoryId Id { get; }
 
     public WorkoutId WorkoutId { get; }
 

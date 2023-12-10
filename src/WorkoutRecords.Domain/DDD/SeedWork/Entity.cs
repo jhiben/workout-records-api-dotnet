@@ -1,16 +1,13 @@
 ﻿namespace WorkoutRecords.Domain.DDD.SeedWork;
 
-public abstract class Entity
+public abstract class Entity<T>
+    where T : struct, IEquatable<T>, IComparable<T>
 {
     int? _requestedHashCode;
 
-    int _id;
+    public T Id { get; }
 
-    public virtual int Id
-    {
-        get => _id;
-        protected set { _id = value; }
-    }
+    protected Entity(T id) => Id = id;
 
     // private List<INotification> _domainEvents;
     // public IReadOnlyCollection<INotification> DomainEvents => _domainEvents?.AsReadOnly();
@@ -31,11 +28,9 @@ public abstract class Entity
     //     _domainEvents?.Clear();
     // }
 
-    public bool IsTransient() => Id == default;
-
     public override bool Equals(object? obj)
     {
-        if (obj is null or not Entity)
+        if (obj is null or not Entity<T>)
             return false;
 
         if (ReferenceEquals(this, obj))
@@ -44,25 +39,20 @@ public abstract class Entity
         if (GetType() != obj.GetType())
             return false;
 
-        var item = (Entity)obj;
+        var item = (Entity<T>)obj;
 
-        return !item.IsTransient() && !IsTransient() && item.Id == Id;
+        return item.Id.Equals(Id);
     }
 
     public override int GetHashCode()
     {
-        if (!IsTransient())
-        {
-            _requestedHashCode ??= Id.GetHashCode() ^ 31;
+        _requestedHashCode ??= Id.GetHashCode() ^ 31;
 
-            return _requestedHashCode.Value;
-        }
-
-        return base.GetHashCode();
+        return _requestedHashCode.Value;
     }
 
-    public static bool operator ==(Entity left, Entity right) =>
+    public static bool operator ==(Entity<T> left, Entity<T> right) =>
         Equals(left, null) ? Equals(right, null) : left.Equals(right);
 
-    public static bool operator !=(Entity left, Entity right) => !(left == right);
+    public static bool operator !=(Entity<T> left, Entity<T> right) => !(left == right);
 }
