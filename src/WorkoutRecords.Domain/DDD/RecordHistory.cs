@@ -1,4 +1,6 @@
-﻿namespace WorkoutRecords.Domain.DDD;
+﻿using WorkoutRecords.Domain.DDD.Exceptions;
+
+namespace WorkoutRecords.Domain.DDD;
 
 public abstract class RecordHistory<T>
     where T : Record
@@ -11,7 +13,24 @@ public abstract class RecordHistory<T>
 
     public IReadOnlyList<T> Records => _records;
 
-    public void Add(T record) => _records.Add(record);
+    public void SetNew(T record)
+    {
+        var existing = _records.LastOrDefault(r => r.Date <= record.Date);
+        if (existing is not null)
+        {
+            if (!record.IsAfter(existing))
+            {
+                throw new InvalidRecordException("New record must be set after the last one.");
+            }
+
+            if (!record.IsBetterThan(existing))
+            {
+                throw new InvalidRecordException("New record must be better than the last one.");
+            }
+        }
+
+        _records.Add(record);
+    }
 }
 
 public class RepsRecordHistory(WorkoutId workoutId) : RecordHistory<RepsRecord>(workoutId) { }

@@ -12,6 +12,11 @@ public class TimeRecord : Record
 
     public static TimeRecord Set(DateOnly date, TimeSpan time) => new(date, Time.Track(time));
 
+    public static bool operator <(TimeRecord left, TimeRecord right) =>
+        (TimeSpan)left.Time < right.Time;
+
+    public static bool operator >(TimeRecord left, TimeRecord right) => right < left;
+
     public static bool operator ==(TimeRecord left, TimeRecord right) => EqualOperator(left, right);
 
     public static bool operator !=(TimeRecord left, TimeRecord right) =>
@@ -20,6 +25,11 @@ public class TimeRecord : Record
     public override bool Equals(object? obj) => base.Equals(obj);
 
     public override int GetHashCode() => base.GetHashCode();
+
+    public override bool IsBetterThan(Record other) =>
+        other is TimeRecord otherTimeRecord && IsBetterThan(otherTimeRecord);
+
+    public bool IsBetterThan(TimeRecord other) => this < other;
 
     protected override IEnumerable<object> GetEqualityComponents()
     {

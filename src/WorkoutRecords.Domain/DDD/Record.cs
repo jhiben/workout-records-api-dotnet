@@ -15,4 +15,8 @@ public abstract class Record(DateOnly date) : ValueObject
     public override bool Equals(object? obj) => base.Equals(obj);
 
     public override int GetHashCode() => base.GetHashCode();
+
+    public bool IsAfter(Record other) => Date > other.Date;
+
+    public abstract bool IsBetterThan(Record other);
 }
