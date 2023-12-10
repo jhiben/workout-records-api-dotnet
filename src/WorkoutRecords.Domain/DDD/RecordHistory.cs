@@ -15,15 +15,15 @@ public abstract class RecordHistory<T>
 
     public void SetNew(T record)
     {
-        var existing = _records.LastOrDefault(r => r.Date <= record.Date);
-        if (existing is not null)
+        var last = _records.LastOrDefault();
+        if (last is not null)
         {
-            if (!record.IsAfter(existing))
+            if (!record.IsAfter(last))
             {
                 throw new InvalidRecordException("New record must be set after the last one.");
             }
 
-            if (!record.IsBetterThan(existing))
+            if (!record.IsBetterThan(last))
             {
                 throw new InvalidRecordException("New record must be better than the last one.");
             }
