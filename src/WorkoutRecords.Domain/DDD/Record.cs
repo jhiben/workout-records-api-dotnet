@@ -1,10 +1,8 @@
-﻿namespace WorkoutRecords.Domain;
+﻿namespace WorkoutRecords.Domain.DDD;
 
-public abstract class Record(Guid workoutId, DateTimeOffset date)
+public abstract class Record(DateOnly date)
 {
-    public Guid WorkoutId { get; } = workoutId;
+    public DateOnly Date { get; } = date;
 
-    public DateTimeOffset Date { get; } = date;
-
-    public static RecordBuilder Create(Guid workoutId, DateTimeOffset date) => new(workoutId, date);
+    public static RecordBuilder Create(DateOnly date) => new(date);
 }

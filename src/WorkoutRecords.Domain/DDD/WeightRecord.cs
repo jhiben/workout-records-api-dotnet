@@ -1,24 +1,15 @@
-﻿using WorkoutRecords.Domain.Exceptions;
-
-namespace WorkoutRecords.Domain;
+﻿namespace WorkoutRecords.Domain.DDD;
 
 public class WeightRecord : Record
 {
-    private WeightRecord(Guid workoutId, DateTimeOffset date, int weight)
-        : base(workoutId, date)
+    private WeightRecord(DateOnly date, Weight weight)
+        : base(date)
     {
         Weight = weight;
     }
 
-    public int Weight { get; }
+    public Weight Weight { get; }
 
-    public static WeightRecord Create(Guid workoutId, DateTimeOffset date, int weight)
-    {
-        if (weight <= 0)
-        {
-            throw new InvalidRecordException("Weight must be greater than 0.");
-        }
-
-        return new WeightRecord(workoutId, date, weight);
-    }
+    public static WeightRecord Set(DateOnly date, int weight) =>
+        new(date, Weight.InKilograms(weight));
 }

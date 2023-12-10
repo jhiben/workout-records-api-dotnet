@@ -1,24 +1,14 @@
-﻿using WorkoutRecords.Domain.Exceptions;
-
-namespace WorkoutRecords.Domain;
+﻿namespace WorkoutRecords.Domain.DDD;
 
 public class TimeRecord : Record
 {
-    private TimeRecord(Guid workoutId, DateTimeOffset date, TimeSpan time)
-        : base(workoutId, date)
+    private TimeRecord(DateOnly date, Time time)
+        : base(date)
     {
         Time = time;
     }
 
-    public TimeSpan Time { get; }
+    public Time Time { get; }
 
-    public static TimeRecord Create(Guid workoutId, DateTimeOffset date, TimeSpan time)
-    {
-        if (time <= TimeSpan.Zero)
-        {
-            throw new InvalidRecordException("Time must be greater than 0.");
-        }
-
-        return new TimeRecord(workoutId, date, time);
-    }
+    public static TimeRecord Set(DateOnly date, TimeSpan time) => new(date, Time.Track(time));
 }

@@ -1,4 +1,7 @@
-﻿namespace WorkoutRecords.Domain.UnitTests.DDD;
+﻿using WorkoutRecords.Domain.DDD;
+using Record = WorkoutRecords.Domain.DDD.Record;
+
+namespace WorkoutRecords.Domain.UnitTests.DDD;
 
 public class RecordTests
 {
@@ -6,12 +9,11 @@ public class RecordTests
     public void Create_Reps_Record()
     {
         // Given
-        var workoutId = Guid.NewGuid();
-        var date = DateTimeOffset.UtcNow;
+        var date = DateOnly.FromDateTime(DateTime.UtcNow);
         var reps = 10;
 
         // When
-        var record = Record.Create(workoutId, date).WithReps(reps);
+        var record = Record.Create(date).WithReps(reps);
 
         // Then
         record.Should().BeOfType<RepsRecord>().Which.Reps.Should().Be(reps);
@@ -21,12 +23,11 @@ public class RecordTests
     public void Create_Weight_Record()
     {
         // Given
-        var workoutId = Guid.NewGuid();
-        var date = DateTimeOffset.UtcNow;
+        var date = DateOnly.FromDateTime(DateTime.UtcNow);
         var weight = 10;
 
         // When
-        var record = Record.Create(workoutId, date).WithWeight(weight);
+        var record = Record.Create(date).WithWeight(weight);
 
         // Then
         record.Should().BeOfType<WeightRecord>().Which.Weight.Should().Be(weight);
@@ -36,12 +37,11 @@ public class RecordTests
     public void Create_Time_Record()
     {
         // Given
-        var workoutId = Guid.NewGuid();
-        var date = DateTimeOffset.UtcNow;
+        var date = DateOnly.FromDateTime(DateTime.UtcNow);
         var time = TimeSpan.FromMinutes(10);
 
         // When
-        var record = Record.Create(workoutId, date).WithTime(time);
+        var record = Record.Create(date).WithTime(time);
 
         // Then
         record.Should().BeOfType<TimeRecord>().Which.Time.Should().Be(time);

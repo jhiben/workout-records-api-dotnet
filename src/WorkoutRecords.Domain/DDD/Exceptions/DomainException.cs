@@ -1,4 +1,4 @@
-﻿namespace WorkoutRecords.Domain.Exceptions;
+﻿namespace WorkoutRecords.Domain.DDD.Exceptions;
 
 public abstract class DomainException : Exception
 {
