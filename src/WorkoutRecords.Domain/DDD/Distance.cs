@@ -14,7 +14,7 @@ public class Distance : ValueObject
     public static Distance InMeters(int value) =>
         value > _min
             ? new(value)
-            : throw new InvalidRecordException("Distance must be greater than 0.");
+            : throw new InvalidDistanceException("Distance must be greater than 0.");
 
     public static implicit operator int(Distance distance) => distance._value;
 

@@ -12,7 +12,7 @@ public class Time : ValueObject
     public static Time Track(TimeSpan time) =>
         time > TimeSpan.Zero
             ? new(time)
-            : throw new InvalidRecordException("Time must be greater than 0.");
+            : throw new InvalidTimeException("Time must be greater than 0.");
 
     public static implicit operator TimeSpan(Time time) => time._value;
 

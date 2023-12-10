@@ -5,11 +5,28 @@ namespace WorkoutRecords.Domain.DDD;
 
 public class Workout : Entity<WorkoutId>
 {
-    private Workout()
-        : this(WorkoutId.New()) { }
+    private readonly List<WorkoutMovement> _movements = [];
 
-    private Workout(WorkoutId id)
-        : base(id) { }
+    private Workout(WorkoutId id, Name name, Time timeCap, Rounds rounds)
+        : base(id)
+    {
+        Name = name;
+        TimeCap = timeCap;
+        Rounds = rounds;
+    }
+
+    public Name Name { get; }
+
+    public Time TimeCap { get; }
+
+    public Rounds Rounds { get; }
+
+    public IReadOnlyList<WorkoutMovement> Movements => _movements;
+
+    public static Workout Create(Name name, Time timeCap, Rounds rounds) =>
+        new(WorkoutId.New(), name, timeCap, rounds);
+
+    public void AddMovement(WorkoutMovement movement) => _movements.Add(movement);
 }
 
 [StronglyTypedId(converters: StronglyTypedIdConverter.None)]

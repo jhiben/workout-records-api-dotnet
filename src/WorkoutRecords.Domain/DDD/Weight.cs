@@ -14,7 +14,7 @@ public class Weight : ValueObject
     public static Weight InKilograms(int value) =>
         value > _min
             ? new(value)
-            : throw new InvalidRecordException("Weight must be greater than 0.");
+            : throw new InvalidWeightException("Weight must be greater than 0.");
 
     public static implicit operator int(Weight weight) => weight._value;
 

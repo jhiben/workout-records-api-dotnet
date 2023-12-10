@@ -14,7 +14,7 @@ public class Reps : ValueObject
     public static Reps Count(int value) =>
         value > _min
             ? new(value)
-            : throw new InvalidRecordException("Reps count must be greater than 0.");
+            : throw new InvalidRepsException("Reps count must be greater than 0.");
 
     public static implicit operator int(Reps reps) => reps._value;
 
