@@ -11,4 +11,19 @@ public class TimeRecord : Record
     public Time Time { get; }
 
     public static TimeRecord Set(DateOnly date, TimeSpan time) => new(date, Time.Track(time));
+
+    public static bool operator ==(TimeRecord left, TimeRecord right) => EqualOperator(left, right);
+
+    public static bool operator !=(TimeRecord left, TimeRecord right) =>
+        NotEqualOperator(left, right);
+
+    public override bool Equals(object? obj) => base.Equals(obj);
+
+    public override int GetHashCode() => base.GetHashCode();
+
+    protected override IEnumerable<object> GetEqualityComponents()
+    {
+        yield return Date;
+        yield return Time;
+    }
 }

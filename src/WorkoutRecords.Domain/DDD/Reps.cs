@@ -1,8 +1,9 @@
 ﻿using WorkoutRecords.Domain.DDD.Exceptions;
+using WorkoutRecords.Domain.DDD.SeedWork;
 
 namespace WorkoutRecords.Domain.DDD;
 
-public class Reps
+public class Reps : ValueObject
 {
     private const int _min = 0;
 
@@ -18,4 +19,17 @@ public class Reps
     public static implicit operator int(Reps repsCount) => repsCount._value;
 
     public static explicit operator Reps(int value) => Count(value);
+
+    public static bool operator ==(Reps left, Reps right) => EqualOperator(left, right);
+
+    public static bool operator !=(Reps left, Reps right) => NotEqualOperator(left, right);
+
+    public override bool Equals(object? obj) => base.Equals(obj);
+
+    public override int GetHashCode() => base.GetHashCode();
+
+    protected override IEnumerable<object> GetEqualityComponents()
+    {
+        yield return _value;
+    }
 }
