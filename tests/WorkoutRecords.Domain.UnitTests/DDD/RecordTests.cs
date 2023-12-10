@@ -13,7 +13,7 @@ public class RecordTests
         var reps = Reps.Count(10);
 
         // When
-        var record = Record.Create(date).WithReps(reps);
+        var record = Record.SetOn(date).WithReps(reps);
 
         // Then
         record.Should().BeOfType<RepsRecord>().Which.Reps.Should().Be(reps);
@@ -27,7 +27,7 @@ public class RecordTests
         var weight = Weight.InKilograms(100);
 
         // When
-        var record = Record.Create(date).WithWeight(weight);
+        var record = Record.SetOn(date).WithWeight(weight);
 
         // Then
         record.Should().BeOfType<WeightRecord>().Which.Weight.Should().Be(weight);
@@ -41,7 +41,7 @@ public class RecordTests
         var time = Time.Track(TimeSpan.FromMinutes(10));
 
         // When
-        var record = Record.Create(date).WithTime(time);
+        var record = Record.SetOn(date).WithTime(time);
 
         // Then
         record.Should().BeOfType<TimeRecord>().Which.Time.Should().Be(time);
@@ -53,8 +53,8 @@ public class RecordTests
         // Given
         var date = DateOnly.FromDateTime(DateTime.UtcNow);
         var reps = Reps.Count(10);
-        var record1 = Record.Create(date).WithReps(reps);
-        var record2 = Record.Create(date).WithReps(reps);
+        var record1 = Record.SetOn(date).WithReps(reps);
+        var record2 = Record.SetOn(date).WithReps(reps);
 
         // When
         var result = record1 == record2;
@@ -70,8 +70,8 @@ public class RecordTests
         var date = DateOnly.FromDateTime(DateTime.UtcNow);
         var reps1 = Reps.Count(10);
         var reps2 = Reps.Count(20);
-        var record1 = Record.Create(date).WithReps(reps1);
-        var record2 = Record.Create(date).WithReps(reps2);
+        var record1 = Record.SetOn(date).WithReps(reps1);
+        var record2 = Record.SetOn(date).WithReps(reps2);
 
         // When
         var result = record1 == record2;
@@ -86,8 +86,8 @@ public class RecordTests
         // Given
         var date = DateOnly.FromDateTime(DateTime.UtcNow);
         var weight = Weight.InKilograms(100);
-        var record1 = Record.Create(date).WithWeight(weight);
-        var record2 = Record.Create(date).WithWeight(weight);
+        var record1 = Record.SetOn(date).WithWeight(weight);
+        var record2 = Record.SetOn(date).WithWeight(weight);
 
         // When
         var result = record1 == record2;
@@ -103,8 +103,8 @@ public class RecordTests
         var date = DateOnly.FromDateTime(DateTime.UtcNow);
         var weight1 = Weight.InKilograms(100);
         var weight2 = Weight.InKilograms(200);
-        var record1 = Record.Create(date).WithWeight(weight1);
-        var record2 = Record.Create(date).WithWeight(weight2);
+        var record1 = Record.SetOn(date).WithWeight(weight1);
+        var record2 = Record.SetOn(date).WithWeight(weight2);
 
         // When
         var result = record1 == record2;
@@ -119,8 +119,8 @@ public class RecordTests
         // Given
         var date = DateOnly.FromDateTime(DateTime.UtcNow);
         var time = Time.Track(TimeSpan.FromMinutes(10));
-        var record1 = Record.Create(date).WithTime(time);
-        var record2 = Record.Create(date).WithTime(time);
+        var record1 = Record.SetOn(date).WithTime(time);
+        var record2 = Record.SetOn(date).WithTime(time);
 
         // When
         var result = record1 == record2;
@@ -136,8 +136,8 @@ public class RecordTests
         var date = DateOnly.FromDateTime(DateTime.UtcNow);
         var time1 = Time.Track(TimeSpan.FromMinutes(10));
         var time2 = Time.Track(TimeSpan.FromMinutes(20));
-        var record1 = Record.Create(date).WithTime(time1);
-        var record2 = Record.Create(date).WithTime(time2);
+        var record1 = Record.SetOn(date).WithTime(time1);
+        var record2 = Record.SetOn(date).WithTime(time2);
 
         // When
         var result = record1 == record2;

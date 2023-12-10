@@ -6,7 +6,7 @@ public abstract class Record(DateOnly date) : ValueObject
 {
     public DateOnly Date { get; } = date;
 
-    public static RecordBuilder Create(DateOnly date) => new(date);
+    public static RecordBuilder SetOn(DateOnly date) => new(date);
 
     public static bool operator ==(Record left, Record right) => EqualOperator(left, right);
 
