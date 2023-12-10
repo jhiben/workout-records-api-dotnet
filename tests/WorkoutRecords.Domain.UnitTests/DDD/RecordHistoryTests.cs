@@ -56,4 +56,19 @@ public class RecordHistoryTests
         // Then
         history.Invoking(h => h.SetNew(record2)).Should().Throw<InvalidRecordException>();
     }
+
+    [Fact]
+    public void Id_GetHashCode_Different()
+    {
+        // Given
+        var workoutId = WorkoutId.New();
+        var history1 = new RepsRecordHistory(workoutId);
+        var history2 = new RepsRecordHistory(workoutId);
+
+        // When
+        var result = history1.Id.GetHashCode() == history2.Id.GetHashCode();
+
+        // Then
+        result.Should().BeFalse();
+    }
 }
