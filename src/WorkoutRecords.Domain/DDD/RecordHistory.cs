@@ -1,4 +1,5 @@
-﻿using WorkoutRecords.Domain.DDD.Exceptions;
+﻿using StronglyTypedIds;
+using WorkoutRecords.Domain.DDD.Exceptions;
 
 namespace WorkoutRecords.Domain.DDD;
 
@@ -7,7 +8,13 @@ public abstract class RecordHistory<T>
 {
     private readonly List<T> _records = [];
 
-    protected RecordHistory(WorkoutId workoutId) => WorkoutId = workoutId;
+    protected RecordHistory(WorkoutId workoutId)
+    {
+        Id = RecordHistoryId.New();
+        WorkoutId = workoutId;
+    }
+
+    public RecordHistoryId Id { get; }
 
     public WorkoutId WorkoutId { get; }
 
@@ -38,3 +45,6 @@ public class RepsRecordHistory(WorkoutId workoutId) : RecordHistory<RepsRecord>(
 public class TimeRecordHistory(WorkoutId workoutId) : RecordHistory<TimeRecord>(workoutId) { }
 
 public class WeightRecordHistory(WorkoutId workoutId) : RecordHistory<WeightRecord>(workoutId) { }
+
+[StronglyTypedId(converters: StronglyTypedIdConverter.None)]
+public partial struct RecordHistoryId;
