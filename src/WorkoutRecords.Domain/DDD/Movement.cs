@@ -4,21 +4,21 @@ namespace WorkoutRecords.Domain.DDD;
 
 public class Movement : Enumeration
 {
-    public static readonly Movement PullUp = new(1, nameof(PullUp));
-    public static readonly Movement PushUp = new(2, nameof(PushUp));
-    public static readonly Movement SitUp = new(3, nameof(SitUp));
+    public static readonly Movement PullUp = new(1, "Pull-Up");
+    public static readonly Movement PushUp = new(2, "Push-Up");
+    public static readonly Movement SitUp = new(3, "Sit-Up");
     public static readonly Movement Squat = new(4, nameof(Squat));
     public static readonly Movement Burpee = new(5, nameof(Burpee));
     public static readonly Movement Run = new(6, nameof(Run));
     public static readonly Movement Row = new(7, nameof(Row));
     public static readonly Movement Bike = new(8, nameof(Bike));
-    public static readonly Movement SingleUnder = new(9, nameof(SingleUnder));
-    public static readonly Movement DoubleUnder = new(10, nameof(DoubleUnder));
+    public static readonly Movement SingleUnder = new(9, "Single Under");
+    public static readonly Movement DoubleUnder = new(10, "Double Under");
     public static readonly Movement Thruster = new(11, nameof(Thruster));
-    public static readonly Movement WallBall = new(12, nameof(WallBall));
-    public static readonly Movement BoxJump = new(13, nameof(BoxJump));
-    public static readonly Movement BoxStepUp = new(14, nameof(BoxStepUp));
-    public static readonly Movement BoxJumpOver = new(15, nameof(BoxJumpOver));
+    public static readonly Movement WallBall = new(12, "Wall Ball");
+    public static readonly Movement BoxJump = new(13, "Box Jump");
+    public static readonly Movement BoxStepUp = new(14, "Box Step-Up");
+    public static readonly Movement BoxJumpOver = new(15, "Box Jump Over");
     public static readonly Movement Deadlift = new(16, nameof(Deadlift));
     public static readonly Movement Clean = new(17, nameof(Clean));
     public static readonly Movement Snatch = new(18, nameof(Snatch));
@@ -63,13 +63,13 @@ public class Movement : Enumeration
     public static readonly Movement RopeClimb = new(54, nameof(RopeClimb));
     public static readonly Movement ToesToBar = new(55, nameof(ToesToBar));
     public static readonly Movement GhdSitUp = new(56, nameof(GhdSitUp));
-    public static readonly Movement GobletSquat = new(57, nameof(GobletSquat));
-    public static readonly Movement DumbbellSnatch = new(58, nameof(DumbbellSnatch));
-    public static readonly Movement DumbbellClean = new(59, nameof(DumbbellClean));
-    public static readonly Movement DumbbellJerk = new(60, nameof(DumbbellJerk));
-    public static readonly Movement DumbbellPress = new(61, nameof(DumbbellPress));
-    public static readonly Movement DumbbellThruster = new(62, nameof(DumbbellThruster));
-    public static readonly Movement FarmersCarry = new(63, nameof(FarmersCarry));
+    public static readonly Movement GobletSquat = new(57, "Goblet Squat");
+    public static readonly Movement DumbbellSnatch = new(58, "Dumbbell Snatch");
+    public static readonly Movement DumbbellClean = new(59, "Dumbbell Clean");
+    public static readonly Movement DumbbellJerk = new(60, "Dumbbell Jerk");
+    public static readonly Movement DumbbellPress = new(61, "Dumbbell Press");
+    public static readonly Movement DumbbellThruster = new(62, "Dumbbell Thruster");
+    public static readonly Movement FarmersCarry = new(63, "Farmer's Carry");
 
     private Movement(int id, string name)
         : base(id, name) { }

@@ -2,7 +2,7 @@
 using WorkoutRecords.Domain.DDD.Exceptions;
 using Record = WorkoutRecords.Domain.DDD.Record;
 
-namespace WorkoutRecords.Domain.UnitTests;
+namespace WorkoutRecords.Domain.UnitTests.DDD;
 
 public class RecordHistoryTests
 {

@@ -28,6 +28,8 @@ public class Weight : ValueObject
 
     public override int GetHashCode() => base.GetHashCode();
 
+    public override string ToString() => _value.ToString() + "kg";
+
     protected override IEnumerable<object> GetEqualityComponents()
     {
         yield return _value;

@@ -16,7 +16,7 @@ public class Reps : ValueObject
             ? new(value)
             : throw new InvalidRecordException("Reps count must be greater than 0.");
 
-    public static implicit operator int(Reps repsCount) => repsCount._value;
+    public static implicit operator int(Reps reps) => reps._value;
 
     public static explicit operator Reps(int value) => Count(value);
 
@@ -27,6 +27,8 @@ public class Reps : ValueObject
     public override bool Equals(object? obj) => base.Equals(obj);
 
     public override int GetHashCode() => base.GetHashCode();
+
+    public override string ToString() => _value.ToString();
 
     protected override IEnumerable<object> GetEqualityComponents()
     {

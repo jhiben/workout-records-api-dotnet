@@ -26,6 +26,8 @@ public class Time : ValueObject
 
     public override int GetHashCode() => base.GetHashCode();
 
+    public override string ToString() => _value.ToString();
+
     protected override IEnumerable<object> GetEqualityComponents()
     {
         yield return _value;
