@@ -14,11 +14,11 @@ public class WorkoutTests
         var workout = Workout.Create(name, timeCap, rounds);
 
         // When
-        workout.AddMovement(DistanceWorkoutMovement.Create(Movement.Run, 1600));
-        workout.AddMovement(RepsWorkoutMovement.Create(Movement.PullUp, 100));
-        workout.AddMovement(RepsWorkoutMovement.Create(Movement.PushUp, 200));
-        workout.AddMovement(RepsWorkoutMovement.Create(Movement.Squat, 300));
-        workout.AddMovement(DistanceWorkoutMovement.Create(Movement.Run, 1600));
+        workout.Comprise(DistanceWorkoutMovement.Define(Movement.Run, 1600));
+        workout.Comprise(RepsWorkoutMovement.Define(Movement.PullUp, 100));
+        workout.Comprise(RepsWorkoutMovement.Define(Movement.PushUp, 200));
+        workout.Comprise(RepsWorkoutMovement.Define(Movement.Squat, 300));
+        workout.Comprise(DistanceWorkoutMovement.Define(Movement.Run, 1600));
 
         // Then
         workout.Name.Should().Be(name);
@@ -42,12 +42,12 @@ public class WorkoutTests
         var workout = Workout.Create(name, timeCap, rounds);
 
         // When
-        workout.AddMovement(RepsWeightWorkoutMovement.Create(Movement.Thruster, 21, 42));
-        workout.AddMovement(RepsWorkoutMovement.Create(Movement.PullUp, 21));
-        workout.AddMovement(RepsWeightWorkoutMovement.Create(Movement.Thruster, 15, 42));
-        workout.AddMovement(RepsWorkoutMovement.Create(Movement.PullUp, 15));
-        workout.AddMovement(RepsWeightWorkoutMovement.Create(Movement.Thruster, 9, 42));
-        workout.AddMovement(RepsWorkoutMovement.Create(Movement.PullUp, 9));
+        workout.Comprise(RepsWeightWorkoutMovement.Define(Movement.Thruster, 21, 42));
+        workout.Comprise(RepsWorkoutMovement.Define(Movement.PullUp, 21));
+        workout.Comprise(RepsWeightWorkoutMovement.Define(Movement.Thruster, 15, 42));
+        workout.Comprise(RepsWorkoutMovement.Define(Movement.PullUp, 15));
+        workout.Comprise(RepsWeightWorkoutMovement.Define(Movement.Thruster, 9, 42));
+        workout.Comprise(RepsWorkoutMovement.Define(Movement.PullUp, 9));
 
         // Then
         workout.Name.Should().Be(name);
@@ -72,9 +72,9 @@ public class WorkoutTests
         var workout = Workout.Create(name, timeCap, rounds);
 
         // When
-        workout.AddMovement(RepsWorkoutMovement.Create(Movement.PullUp, 5));
-        workout.AddMovement(RepsWorkoutMovement.Create(Movement.PushUp, 10));
-        workout.AddMovement(RepsWorkoutMovement.Create(Movement.Squat, 15));
+        workout.Comprise(RepsWorkoutMovement.Define(Movement.PullUp, 5));
+        workout.Comprise(RepsWorkoutMovement.Define(Movement.PushUp, 10));
+        workout.Comprise(RepsWorkoutMovement.Define(Movement.Squat, 15));
 
         // Then
         workout.Name.Should().Be(name);

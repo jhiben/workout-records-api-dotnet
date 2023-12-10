@@ -12,7 +12,7 @@ public class WorkoutMovementTests
         var distance = Distance.InMeters(100);
 
         // When
-        var workout = DistanceWorkoutMovement.Create(movement, distance);
+        var workout = DistanceWorkoutMovement.Define(movement, distance);
 
         // Then
         workout.ToString().Should().Be("Run - 100m");
@@ -27,7 +27,7 @@ public class WorkoutMovementTests
         var weight = Weight.InKilograms(100);
 
         // When
-        var workout = DistanceWeightWorkoutMovement.Create(movement, distance, weight);
+        var workout = DistanceWeightWorkoutMovement.Define(movement, distance, weight);
 
         // Then
         workout.ToString().Should().Be("Farmer's Carry - 100m at 100kg");
@@ -41,7 +41,7 @@ public class WorkoutMovementTests
         var reps = Reps.Count(10);
 
         // When
-        var workout = RepsWorkoutMovement.Create(movement, reps);
+        var workout = RepsWorkoutMovement.Define(movement, reps);
 
         // Then
         workout.ToString().Should().Be("Pull-Up - 10 reps");
@@ -56,7 +56,7 @@ public class WorkoutMovementTests
         var weight = Weight.InKilograms(100);
 
         // When
-        var workout = RepsWeightWorkoutMovement.Create(movement, reps, weight);
+        var workout = RepsWeightWorkoutMovement.Define(movement, reps, weight);
 
         // Then
         workout.ToString().Should().Be("Clean - 10 reps at 100kg");

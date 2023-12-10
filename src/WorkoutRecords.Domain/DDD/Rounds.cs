@@ -22,6 +22,10 @@ public class Rounds : ValueObject
 
     public static explicit operator Rounds(int value) => Count(value);
 
+    public static bool operator <(Rounds left, Rounds right) => left._value < right._value;
+
+    public static bool operator >(Rounds left, Rounds right) => left._value > right._value;
+
     public static bool operator ==(Rounds left, Rounds right) => EqualOperator(left, right);
 
     public static bool operator !=(Rounds left, Rounds right) => NotEqualOperator(left, right);

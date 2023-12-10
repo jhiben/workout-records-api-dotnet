@@ -4,6 +4,7 @@ namespace WorkoutRecords.Domain.DDD;
 
 public class Movement : Enumeration
 {
+    public static readonly Movement Rest = new(0, nameof(Rest));
     public static readonly Movement PullUp = new(1, "Pull-Up");
     public static readonly Movement PushUp = new(2, "Push-Up");
     public static readonly Movement SitUp = new(3, "Sit-Up");
@@ -70,6 +71,7 @@ public class Movement : Enumeration
     public static readonly Movement DumbbellPress = new(61, "Dumbbell Press");
     public static readonly Movement DumbbellThruster = new(62, "Dumbbell Thruster");
     public static readonly Movement FarmersCarry = new(63, "Farmer's Carry");
+    public static readonly Movement Plank = new(64, nameof(Plank));
 
     private Movement(int id, string name)
         : base(id, name) { }

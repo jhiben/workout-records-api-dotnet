@@ -10,7 +10,7 @@ public class DistanceWorkoutMovement : WorkoutMovement
 
     public Distance Distance { get; }
 
-    public static DistanceWorkoutMovement Create(Movement movement, int distance) =>
+    public static DistanceWorkoutMovement Define(Movement movement, int distance) =>
         new(movement, Distance.InMeters(distance));
 
     public override string ToString() => $"{Movement.Name} - {Distance}";

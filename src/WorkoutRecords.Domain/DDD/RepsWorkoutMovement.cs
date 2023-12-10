@@ -10,7 +10,7 @@ public class RepsWorkoutMovement : WorkoutMovement
 
     public Reps Reps { get; set; }
 
-    public static RepsWorkoutMovement Create(Movement movement, int reps) =>
+    public static RepsWorkoutMovement Define(Movement movement, int reps) =>
         new(movement, Reps.Count(reps));
 
     public override string ToString() => $"{Movement.Name} - {Reps} reps";

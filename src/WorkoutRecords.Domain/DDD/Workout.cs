@@ -26,7 +26,7 @@ public class Workout : Entity<WorkoutId>
     public static Workout Create(Name name, Time timeCap, Rounds rounds) =>
         new(WorkoutId.New(), name, timeCap, rounds);
 
-    public void AddMovement(WorkoutMovement movement) => _movements.Add(movement);
+    public void Comprise(WorkoutMovement movement) => _movements.Add(movement);
 }
 
 [StronglyTypedId(converters: StronglyTypedIdConverter.None)]

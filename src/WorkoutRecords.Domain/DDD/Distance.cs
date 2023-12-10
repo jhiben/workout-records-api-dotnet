@@ -20,6 +20,10 @@ public class Distance : ValueObject
 
     public static explicit operator Distance(int value) => InMeters(value);
 
+    public static bool operator <(Distance left, Distance right) => left._value < right._value;
+
+    public static bool operator >(Distance left, Distance right) => left._value > right._value;
+
     public static bool operator ==(Distance left, Distance right) => EqualOperator(left, right);
 
     public static bool operator !=(Distance left, Distance right) => NotEqualOperator(left, right);

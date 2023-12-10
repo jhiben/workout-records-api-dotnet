@@ -20,6 +20,10 @@ public class Reps : ValueObject
 
     public static explicit operator Reps(int value) => Count(value);
 
+    public static bool operator <(Reps left, Reps right) => left._value < right._value;
+
+    public static bool operator >(Reps left, Reps right) => left._value > right._value;
+
     public static bool operator ==(Reps left, Reps right) => EqualOperator(left, right);
 
     public static bool operator !=(Reps left, Reps right) => NotEqualOperator(left, right);

@@ -18,6 +18,10 @@ public class Time : ValueObject
 
     public static explicit operator Time(TimeSpan time) => Track(time);
 
+    public static bool operator <(Time left, Time right) => left._value < right._value;
+
+    public static bool operator >(Time left, Time right) => left._value > right._value;
+
     public static bool operator ==(Time left, Time right) => EqualOperator(left, right);
 
     public static bool operator !=(Time left, Time right) => NotEqualOperator(left, right);

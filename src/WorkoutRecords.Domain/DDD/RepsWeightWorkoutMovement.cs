@@ -13,7 +13,7 @@ public class RepsWeightWorkoutMovement : WorkoutMovement
 
     public Weight Weight { get; }
 
-    public static RepsWeightWorkoutMovement Create(Movement movement, int reps, int weight) =>
+    public static RepsWeightWorkoutMovement Define(Movement movement, int reps, int weight) =>
         new(movement, Reps.Count(reps), Weight.InKilograms(weight));
 
     public override string ToString() => $"{Movement.Name} - {Reps} reps at {Weight}";

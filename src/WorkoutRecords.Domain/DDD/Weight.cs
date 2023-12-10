@@ -20,6 +20,10 @@ public class Weight : ValueObject
 
     public static explicit operator Weight(int value) => InKilograms(value);
 
+    public static bool operator <(Weight left, Weight right) => left._value < right._value;
+
+    public static bool operator >(Weight left, Weight right) => left._value > right._value;
+
     public static bool operator ==(Weight left, Weight right) => EqualOperator(left, right);
 
     public static bool operator !=(Weight left, Weight right) => NotEqualOperator(left, right);

@@ -13,7 +13,7 @@ public class DistanceWeightWorkoutMovement : WorkoutMovement
 
     public Weight Weight { get; }
 
-    public static DistanceWeightWorkoutMovement Create(
+    public static DistanceWeightWorkoutMovement Define(
         Movement movement,
         int distance,
         int weight
