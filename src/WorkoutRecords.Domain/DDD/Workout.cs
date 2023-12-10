@@ -23,7 +23,7 @@ public class Workout : Entity<WorkoutId>
 
     public IReadOnlyList<WorkoutMovement> Movements => _movements;
 
-    public static Workout Create(Name name, Time timeCap, Rounds rounds) =>
+    public static Workout Prepare(Name name, Time timeCap, Rounds rounds) =>
         new(WorkoutId.New(), name, timeCap, rounds);
 
     public void Comprise(WorkoutMovement movement) => _movements.Add(movement);

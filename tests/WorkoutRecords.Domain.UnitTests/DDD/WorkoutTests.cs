@@ -11,7 +11,7 @@ public class WorkoutTests
         var name = Name.Of("Murph");
         var timeCap = Time.Track(TimeSpan.FromMinutes(60));
         var rounds = Rounds.Count(1);
-        var workout = Workout.Create(name, timeCap, rounds);
+        var workout = Workout.Prepare(name, timeCap, rounds);
 
         // When
         workout.Comprise(DistanceWorkoutMovement.Define(Movement.Run, 1600));
@@ -39,7 +39,7 @@ public class WorkoutTests
         var name = Name.Of("Fran");
         var timeCap = Time.Track(TimeSpan.FromMinutes(10));
         var rounds = Rounds.Count(3);
-        var workout = Workout.Create(name, timeCap, rounds);
+        var workout = Workout.Prepare(name, timeCap, rounds);
 
         // When
         workout.Comprise(RepsWeightWorkoutMovement.Define(Movement.Thruster, 21, 42));
@@ -69,7 +69,7 @@ public class WorkoutTests
         var name = Name.Of("Cindy");
         var timeCap = Time.Track(TimeSpan.FromMinutes(20));
         var rounds = Rounds.AMRAP;
-        var workout = Workout.Create(name, timeCap, rounds);
+        var workout = Workout.Prepare(name, timeCap, rounds);
 
         // When
         workout.Comprise(RepsWorkoutMovement.Define(Movement.PullUp, 5));
