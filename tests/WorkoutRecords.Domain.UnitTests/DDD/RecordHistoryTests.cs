@@ -11,7 +11,7 @@ public class RecordHistoryTests
     {
         // Given
         var workoutId = WorkoutId.New();
-        var history = new RepsRecordHistory(workoutId);
+        var history = RecordHistory.ForReps(workoutId);
         var record = Record.SetOn(DateOnly.FromDateTime(DateTime.UtcNow)).WithReps(Reps.Count(10));
 
         // When
@@ -26,7 +26,7 @@ public class RecordHistoryTests
     {
         // Given
         var workoutId = WorkoutId.New();
-        var history = new RepsRecordHistory(workoutId);
+        var history = RecordHistory.ForReps(workoutId);
         var record1 = Record.SetOn(DateOnly.FromDateTime(DateTime.UtcNow)).WithReps(Reps.Count(10));
         var record2 = Record
             .SetOn(DateOnly.FromDateTime(DateTime.UtcNow.AddDays(-1)))
@@ -44,7 +44,7 @@ public class RecordHistoryTests
     {
         // Given
         var workoutId = WorkoutId.New();
-        var history = new RepsRecordHistory(workoutId);
+        var history = RecordHistory.ForReps(workoutId);
         var record1 = Record
             .SetOn(DateOnly.FromDateTime(DateTime.UtcNow.AddDays(-1)))
             .WithReps(Reps.Count(10));
@@ -62,8 +62,8 @@ public class RecordHistoryTests
     {
         // Given
         var workoutId = WorkoutId.New();
-        var history1 = new RepsRecordHistory(workoutId);
-        var history2 = new RepsRecordHistory(workoutId);
+        var history1 = RecordHistory.ForReps(workoutId);
+        var history2 = RecordHistory.ForReps(workoutId);
 
         // When
         var result = history1.Id.GetHashCode() == history2.Id.GetHashCode();
