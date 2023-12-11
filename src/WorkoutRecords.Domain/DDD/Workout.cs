@@ -3,7 +3,7 @@ using WorkoutRecords.Domain.DDD.SeedWork;
 
 namespace WorkoutRecords.Domain.DDD;
 
-public class Workout : Entity<WorkoutId>
+public class Workout : Entity<WorkoutId>, IAggregateRoot
 {
     private readonly List<WorkoutMovement> _movements = [];
 

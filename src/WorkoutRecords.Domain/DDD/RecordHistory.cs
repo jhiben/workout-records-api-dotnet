@@ -4,7 +4,7 @@ using WorkoutRecords.Domain.DDD.SeedWork;
 
 namespace WorkoutRecords.Domain.DDD;
 
-public abstract class RecordHistory : Entity<RecordHistoryId>
+public abstract class RecordHistory : Entity<RecordHistoryId>, IAggregateRoot
 {
     protected RecordHistory(RecordHistoryId id)
         : base(id) { }
