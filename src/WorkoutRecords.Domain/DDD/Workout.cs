@@ -6,6 +6,7 @@ namespace WorkoutRecords.Domain.DDD;
 public class Workout : Entity<WorkoutId>, IAggregateRoot
 {
     private readonly List<WorkoutMovement> _movements = [];
+    private readonly List<object> _uncommittedEvents = new();
 
     private Workout(WorkoutId id, Name name, Time timeCap, Rounds rounds)
         : base(id)
@@ -26,7 +27,40 @@ public class Workout : Entity<WorkoutId>, IAggregateRoot
     public static Workout Prepare(Name name, Time timeCap, Rounds rounds) =>
         new(WorkoutId.New(), name, timeCap, rounds);
 
-    public void Comprise(WorkoutMovement movement) => _movements.Add(movement);
+    public void Comprise(WorkoutMovement movement)
+    {
+        RaiseEvent(new WorkoutMovementAddedEvent(movement));
+    }
+
+    public IReadOnlyList<object> GetUncommittedEvents() => _uncommittedEvents;
+
+    public void ClearUncommittedEvents() => _uncommittedEvents.Clear();
+
+    private void RaiseEvent(object @event)
+    {
+        _uncommittedEvents.Add(@event);
+        ApplyEvent(@event);
+    }
+
+    private void ApplyEvent(object @event)
+    {
+        switch (@event)
+        {
+            case WorkoutMovementAddedEvent e:
+                _movements.Add(e.Movement);
+                break;
+        }
+    }
+}
+
+public class WorkoutMovementAddedEvent
+{
+    public WorkoutMovementAddedEvent(WorkoutMovement movement)
+    {
+        Movement = movement;
+    }
+
+    public WorkoutMovement Movement { get; }
 }
 
 [StronglyTypedId(converters: StronglyTypedIdConverter.None)]
