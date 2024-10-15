@@ -1,4 +1,4 @@
-﻿using StronglyTypedIds;
+using StronglyTypedIds;
 using WorkoutRecords.Domain.DDD.Exceptions;
 using WorkoutRecords.Domain.DDD.SeedWork;
 
@@ -6,6 +6,8 @@ namespace WorkoutRecords.Domain.DDD;
 
 public abstract class RecordHistory : Entity<RecordHistoryId>, IAggregateRoot
 {
+    private readonly List<object> _uncommittedEvents = new();
+
     protected RecordHistory(RecordHistoryId id)
         : base(id) { }
 
@@ -14,6 +16,18 @@ public abstract class RecordHistory : Entity<RecordHistoryId>, IAggregateRoot
     public static TimeRecordHistory ForTime(WorkoutId workoutId) => new(workoutId);
 
     public static WeightRecordHistory ForWeight(WorkoutId workoutId) => new(workoutId);
+
+    public IReadOnlyList<object> GetUncommittedEvents() => _uncommittedEvents;
+
+    public void ClearUncommittedEvents() => _uncommittedEvents.Clear();
+
+    protected void RaiseEvent(object @event)
+    {
+        _uncommittedEvents.Add(@event);
+        ApplyEvent(@event);
+    }
+
+    protected abstract void ApplyEvent(object @event);
 }
 
 public abstract class RecordHistory<T> : RecordHistory
@@ -50,7 +64,17 @@ public abstract class RecordHistory<T> : RecordHistory
             }
         }
 
-        _records.Add(record);
+        RaiseEvent(new RecordSetEvent<T>(record));
+    }
+
+    protected override void ApplyEvent(object @event)
+    {
+        switch (@event)
+        {
+            case RecordSetEvent<T> e:
+                _records.Add(e.Record);
+                break;
+        }
     }
 }
 
@@ -70,6 +94,16 @@ public class WeightRecordHistory : RecordHistory<WeightRecord>
 {
     internal WeightRecordHistory(WorkoutId workoutId)
         : base(workoutId) { }
+}
+
+public class RecordSetEvent<T>
+{
+    public RecordSetEvent(T record)
+    {
+        Record = record;
+    }
+
+    public T Record { get; }
 }
 
 [StronglyTypedId(converters: StronglyTypedIdConverter.None)]
