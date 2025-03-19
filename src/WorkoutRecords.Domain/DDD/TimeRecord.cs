@@ -1,4 +1,6 @@
-﻿namespace WorkoutRecords.Domain.DDD;
+using Microsoft.EntityFrameworkCore;
+
+namespace WorkoutRecords.Domain.DDD;
 
 public class TimeRecord : Record
 {
@@ -36,4 +38,6 @@ public class TimeRecord : Record
         yield return Date;
         yield return Time;
     }
+
+    public DbSet<TimeRecord> TimeRecords { get; set; }
 }

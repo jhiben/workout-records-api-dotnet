@@ -1,4 +1,5 @@
-﻿using WorkoutRecords.Domain.DDD.SeedWork;
+using Microsoft.EntityFrameworkCore;
+using WorkoutRecords.Domain.DDD.SeedWork;
 
 namespace WorkoutRecords.Domain.DDD;
 
@@ -89,4 +90,6 @@ public class Movement : Enumeration
     public static Movement FromName(string name) => FromDisplayName<Movement>(name);
 
     public static IEnumerable<Movement> GetAll() => GetAll<Movement>();
+
+    public DbSet<Movement> Movements { get; set; }
 }

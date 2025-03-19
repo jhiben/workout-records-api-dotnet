@@ -1,4 +1,5 @@
-﻿using WorkoutRecords.Domain.DDD.Exceptions;
+using Microsoft.EntityFrameworkCore;
+using WorkoutRecords.Domain.DDD.Exceptions;
 using WorkoutRecords.Domain.DDD.SeedWork;
 
 namespace WorkoutRecords.Domain.DDD;
@@ -36,4 +37,6 @@ public class Time : ValueObject
     {
         yield return _value;
     }
+
+    public DbSet<Time> Times { get; set; }
 }

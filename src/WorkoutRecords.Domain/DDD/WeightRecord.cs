@@ -1,4 +1,6 @@
-﻿namespace WorkoutRecords.Domain.DDD;
+using Microsoft.EntityFrameworkCore;
+
+namespace WorkoutRecords.Domain.DDD;
 
 public class WeightRecord : Record
 {
@@ -38,4 +40,6 @@ public class WeightRecord : Record
         yield return Date;
         yield return Weight;
     }
+
+    public DbSet<WeightRecord> WeightRecords { get; set; }
 }
