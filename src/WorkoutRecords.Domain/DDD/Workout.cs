@@ -1,5 +1,6 @@
-﻿using StronglyTypedIds;
+using StronglyTypedIds;
 using WorkoutRecords.Domain.DDD.SeedWork;
+using Microsoft.EntityFrameworkCore;
 
 namespace WorkoutRecords.Domain.DDD;
 
@@ -27,6 +28,8 @@ public class Workout : Entity<WorkoutId>, IAggregateRoot
         new(WorkoutId.New(), name, timeCap, rounds);
 
     public void Comprise(WorkoutMovement movement) => _movements.Add(movement);
+
+    public DbSet<Workout> Workouts { get; set; }
 }
 
 [StronglyTypedId(converters: StronglyTypedIdConverter.None)]

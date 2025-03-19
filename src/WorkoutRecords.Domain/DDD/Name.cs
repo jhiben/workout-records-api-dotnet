@@ -1,4 +1,5 @@
-﻿using WorkoutRecords.Domain.DDD.Exceptions;
+using Microsoft.EntityFrameworkCore;
+using WorkoutRecords.Domain.DDD.Exceptions;
 using WorkoutRecords.Domain.DDD.SeedWork;
 
 namespace WorkoutRecords.Domain.DDD;
@@ -51,4 +52,6 @@ public class Name : ValueObject
     {
         yield return _value;
     }
+
+    public DbSet<Name> Names { get; set; }
 }

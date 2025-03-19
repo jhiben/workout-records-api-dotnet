@@ -1,4 +1,6 @@
-﻿namespace WorkoutRecords.Domain.DDD;
+using Microsoft.EntityFrameworkCore;
+
+namespace WorkoutRecords.Domain.DDD;
 
 public class DistanceWorkoutMovement : WorkoutMovement
 {
@@ -20,4 +22,6 @@ public class DistanceWorkoutMovement : WorkoutMovement
         yield return Movement;
         yield return Distance;
     }
+
+    public DbSet<DistanceWorkoutMovement> DistanceWorkoutMovements { get; set; }
 }

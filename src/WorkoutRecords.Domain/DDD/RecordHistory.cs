@@ -1,6 +1,7 @@
-﻿using StronglyTypedIds;
+using StronglyTypedIds;
 using WorkoutRecords.Domain.DDD.Exceptions;
 using WorkoutRecords.Domain.DDD.SeedWork;
+using Microsoft.EntityFrameworkCore;
 
 namespace WorkoutRecords.Domain.DDD;
 
@@ -74,3 +75,5 @@ public class WeightRecordHistory : RecordHistory<WeightRecord>
 
 [StronglyTypedId(converters: StronglyTypedIdConverter.None)]
 public partial struct RecordHistoryId;
+
+public DbSet<RecordHistory> RecordHistories { get; set; }
